@@ -1,1 +1,1 @@
-# foulders
+# folders

@@ -18,7 +18,7 @@ public:
 
         for (int i = 0; i < count; ++i) {
             std::string name;
-            for (int j = 0; j < 5; ++j) { // Adjust the length of the generated name as needed
+            for (int j = 0; j < 5; ++j) { // Отрегулируйте длину сгенерированного имени по мере необходимости
                 name += chars[dis(gen)];
             }
             outputFile << name << std::endl;

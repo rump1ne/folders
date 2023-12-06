@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <fstream>
 #include <ctime>
 
@@ -83,13 +84,8 @@ int main() {
     cout << "Введите символы для файлов:\n>>"; cin >> file_symbols;
     cout << "Введите количество файлов:\n>>"; cin >> quantity_file;
 
-    if (quantity_folder <= 0 || quantity_file <= 0) {
-        cout << "Некорректное количество папок или файлов. Пожалуйста, введите положительное число." << endl;
-        return 0;
-    }
-
-    vector<string> arr_folder(quantity_folder);
-    vector<string> arr_file(quantity_file);
+    string arr_folder[quantity_folder];
+    string arr_file[quantity_file];
 
     vector<SymbolData> folder_data;
     for (char sym : folder_symbols) folder_data.push_back({ sym, 1 });
@@ -105,19 +101,17 @@ int main() {
         add_ind(folder_data);
         arr_folder[i] = folder_result;
 
+        cout << "Создана папка: " << arr_folder[i] << '\n';
         folderLogger.Log("Создана папка: " + arr_folder[i]);
-    }
-    
-    Logger fileLogger("file_log.txt");
 
-    for (int i = 0; i != quantity_folder; ++i) {
         for (int j = 0; j != quantity_file; ++j) {
             string file_result;
             add_symbol(file_result, file_data);
             add_ind(file_data);
             arr_file[j] = file_result;
 
-            fileLogger.Log("В папке " + arr_folder[i] + " создан файл: " + arr_file[j]);
+            cout << "В папке " << arr_folder[i] << " создан файл: " << arr_file[j] << '\n';
+            folderLogger.Log("В папке " + arr_folder[i] + " создан файл: " + arr_file[j]);
         }
     }
 
